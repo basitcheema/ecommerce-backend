@@ -2,7 +2,6 @@ const express = require("express");
 const cors = require("cors");
 const categoriesRoute = require("./routes/categories")
 const cartRoutes = require('./routes/cart')
-// const myprod = require("./db/db");
 const productRoutes = require("./routes/products");
 const orderRoutes = require("./routes/orders");
 const paymentRoutes = require("./routes/payments");
@@ -22,8 +21,8 @@ app.get('/', function(req,res){
 app.use('/products', productRoutes)
 app.use("/categories", categoriesRoute);
 app.use('/cart', cartRoutes);
-app.use('/order', orderRoutes);
-app.use('/payment', paymentRoutes);
+app.use('/orders', orderRoutes);
+app.use('/payments', paymentRoutes);
 
 
 app.listen(5001, ()=>{

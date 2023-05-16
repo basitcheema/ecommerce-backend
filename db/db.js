@@ -118,6 +118,6 @@ Product.find().then((res) => {
   
 
 
-module.exports = {Product, Payment, Order};
+module.exports = {Product, Payment, Order, categories};
 
 

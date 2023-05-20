@@ -40,7 +40,7 @@ const productSchema = new mongoose.Schema({
 const Product = mongoose.model("Product", productSchema);
 
 const orderSchema = new mongoose.Schema({
-    customerName: {
+    status: {
         type: String, 
         required: true
     },

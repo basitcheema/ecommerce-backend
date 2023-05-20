@@ -20,7 +20,7 @@ router.post('/', (req, res) => {
     const prodIds = req.body.productIds;
     const quantity = req.body.quantity;
     const date = new Date().toLocaleString();
-    const status = "pending";
+    const status = "payment-pending";
 
     console.log(prodIds, quantity, date, status);
 

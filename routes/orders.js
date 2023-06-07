@@ -6,7 +6,7 @@ const router = express.Router();
 router.use(express.json())
 router.use(express.urlencoded({extended: true}))
 
-// Order.find().then((res) => console.log(res))
+
 router.get("/", (req, res) => {
     Order.find().then((response) => res.json(response));
 })
@@ -24,11 +24,18 @@ router.post('/', (req, res) => {
 
     console.log(prodIds, quantity, date, status);
 
-    Product.findById(prodIds).then((response) => console.log("ID found: ",response._id));
+    // return order id & save order to db!
+    Product.findById(prodIds).then((response) => {
+        console.log("ID found: ",response._id)
+        const newOrder = new Order({status, date, quantity, prodId: []});
+        newOrder.save();
+        res.json({orderId: newOrder._id,message: "Added Order. Proceed To Payment"})
 
-    const newOrder = new Order({status, date, quantity, prodId: []});
-    // newOrder.save();
-    res.send("Added Order. Proceed To Payment")
+    }).catch((error) => {
+        console.log("Error!, No Product with ID Found");
+        res.status(400).send("Error!, No Product with ID Found")
+    })
+
 
 })
 

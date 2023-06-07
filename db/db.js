@@ -2,16 +2,7 @@ const mongoose = require("mongoose");
 
 mongoose.connect("mongodb://localhost:27017/ecommerceDB");
 
-// const readline = require('readline').createInterface({
-//     input: process.stdin,
-//     output: process.stdout,
-//   });
-
-console.log("DB Js");
-
 const categories = [{name: "Tech", id: 1}, {name: "Clothing", id: 2}, {name: "Sports", id: 3}];
-
-//validation in schema
 
 const productSchema = new mongoose.Schema({
     name: {
@@ -84,39 +75,7 @@ const Payment = mongoose.model("Payment", paymentSchema);
 orderSchema.path('prodId').ref(Product);
 paymentSchema.path('orderId').ref(Order);
 
-// console.log(orderSchema.paths.prodId)
-// console.log(paymentSchema.paths.orderId)
-
-
-// Product.find().then(function(products){
-//     console.log("products");
-
-// })
 const date = new Date();
-
-
-// Adding Products
-
-// const prod = new Product({name:"headphone", quantity: 5, description: "apple headphones", category: categories[0], img: "empty"})
-// prod.save();
-
-let prod;
-Product.find().then((res) => {
-    prod = res
-    const order1 = new Order({customerName: "Ali", quantity:1, date: date, prodId: prod});
-    // order1.save();
-})
-
-// Adding orders 
-
-
-  // taking input in nodejs
-//   readline.question(`What's your name?`, name => {
-//     console.log(`Hi ${name}!`);
-//     readline.close();
-//   });
-  
-
 
 module.exports = {Product, Payment, Order, categories};
 
